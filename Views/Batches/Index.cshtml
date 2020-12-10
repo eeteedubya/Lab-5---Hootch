@@ -1,0 +1,83 @@
+﻿@model IEnumerable<Lab_5___Hootch.Data.Batch>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.DateStarted)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedFinishDate)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.AmountOfWash)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedWashPercent)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ExpectedYield)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.ActualYield)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.PercentDiff)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Notes)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DateStarted)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedFinishDate)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AmountOfWash)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedWashPercent)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ExpectedYield)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ActualYield)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PercentDiff)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Notes)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.ID">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.ID">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.ID">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>

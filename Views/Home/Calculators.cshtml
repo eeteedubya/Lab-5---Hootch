@@ -1,0 +1,569 @@
+﻿
+@{
+    ViewData["Title"] = "Calculators";
+}
+
+<h1>Calculators</h1>
+<!-- These calculators are not created by me. They are from the good folks at:
+    https://americanhomedistillers.com/distilling-calculator/
+    
+    I use these calculations a lot and wanted a local copy of my own. they are for personal educational
+    purposes only.  My intentions are to lock the application to all but registered users.
+    
+    -->
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+</div>
+<div id="content" class="clearfix fullwidth">
+    <h1>Distilling Calculator</h1><br><br>
+    <div id="left-area">
+
+        <div id="cacl">
+            <h3 class="alignCenter">Sugar Wash Calculator</h3>
+
+            <form action="" id="sc" name="sc">
+                <div class="c2">
+                    <table class="c3">
+                        <tbody>
+                            <tr>
+                                <td colspan="3">
+                                    <input name="a" value=" 8" size="4">
+                                    <select name="weight">
+                                        <option value="0.226796185">cup</option>
+                                        <option value="0.45359237">lb</option>
+                                        <option value="1">kg</option>
+                                    </select>
+                                    sugar made up to
+                                    <input name="b" value=" 5" size="4">
+                                    <select name="amount">
+                                        <option selected="selected" value="3.7854118">US gal</option>
+                                        <option value="1">L</option>
+                                        <option value="0.946352946">US qt</option>
+                                    </select> total volume
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="3">
+                                    should have an SG <input name="s" size="5">and only require
+                                    <input name="wreq" size="5">
+                                    <select name="wreqt">
+                                        <option value="0.264172052358">US gal</option>
+                                        <option value="1">L</option>
+                                        <option value="1.05668820943">US qt</option>
+                                    </select>
+                                    of water
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    and should produce a wash of
+                                    <input name="at" size="5">%
+                                    alcohol
+                                </td>
+                                <td align="right" valign="bottom">
+                                    <input type="button" value="Calculate" onclick="x=sc.a.value*sc.weight.value; y=sc.b.value*sc.amount.value; sc.s.value=Math.round(((258.6+(87.96*x/y))+Math.sqrt(66874+(7736.96*x*x/(y*y))+(57947*x/y)))/517.2 *1000)/1000; sc.wreq.value= Math.round(((y * sc.s.value) - x)*sc.wreqt.value*100)/100; sc.at.value=Math.round(sc.a.value*sc.weight.value*1000/17/(sc.b.value*sc.amount.value)*10)/10;">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <br>
+
+            <h3 class="alignCenter">Alcohol Content of the Wash</h3>
+            <form action="" id="alk5" name="alk5">
+                <div class="c2">
+                    <table cellpadding="5" class="c3" style="border: 4px solid #eee">
+                        <tbody>
+                            <tr>
+                                <td style="border: 4px solid #eee">
+                                    If the SG started at<input value=" 1.080" size="6" name="start">
+                                </td>
+                                <td style="border: 4px solid #eee">
+                                    and finished at <input value=" 0.980" size="6" name="finish">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td style="border: 4px solid #eee">
+                                    Your wash is <input size="4" name="alcohol">% alcohol
+                                </td>
+                                <td align="center" valign="bottom" style="border: 4px solid #eee">
+                                    <input type="button" onclick="alk5.alcohol.value=(alk5.start.value - alk5.finish.value)*129" value="Calculate">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <br>
+
+            <h3 class="alignCenter">Distillate To Water Calculator</h3>
+            <form action="" name="dtw1">
+                <div class="c2">
+                    <table class="c3">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    <input value=" 20" size="4" name="amount">
+                                    <select name="amountm">
+                                        <option value="1">L</option>
+                                        <option value="3.7854118">gal</option>
+                                    </select>
+                                    of wash at
+                                    <input value=" 9" size="4" name="conc">
+                                    % alcohol
+                                </td>
+                                <td align="right" valign="top">
+                                    <input type="button" onclick="x=dtw1.amount.value * dtw1.amountm.value; dtw1.vol.value=Math.round((0.95*x * dtw1.conc.value /dtw1.dist.value)*dtw1.distillm.value*100)/100; dtw1.vol1.value=Math.round((x - (x * dtw1.conc.value /dtw1.dist.value))*dtw1.left.value*100)/100;" value="Calculate">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    through a still that collects its distillate at
+                                    <input value=" 92" size="4" name="dist">
+                                    %
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    should result in
+                                    <input size="4" name="vol">
+                                    <select name="distillm">
+                                        <option value="1">L</option>
+                                        <option value="33.8140227018">US fl oz</option>
+                                        <option value="4.22675283773">US cups</option>
+
+                                        <option value="2.11337641887">US pints</option>
+                                        <option value="1.05668820943">US qt</option>
+                                        <option value="0.264172052358">US US gal</option>
+                                    </select>
+                                    alcohol collected<br>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td colspan="2">
+                                    should result in
+                                    <input size="4" name="vol1">
+                                    <select name="left">
+                                        <option value="1">L</option>
+                                        <option value="33.8140227018">US fl oz</option>
+                                        <option value="4.22675283773">US cups</option>
+                                        <option value="2.11337641887">US pints</option>
+                                        <option value="1.05668820943">US qt</option>
+                                        <option value="0.264172052358">US US gal</option>
+                                    </select>
+                                    water left in the boiler when finished
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <br>
+
+            <h3 class="alignCenter">Dilution Calculator</h3>
+            <form action="" name="alk2">
+                <div class="c2">
+                    <table class="c3">
+                        <tbody>
+                            <tr>
+                                <td colspan="2">
+                                    Dilute
+                                    <input name="amount" value=" 2" size="4">
+                                    <select name="amountm">
+                                        <option value="1">L</option>
+                                        <option value="0.0295735295625">US fl oz</option>
+                                        <option value="0.2365882365">US cups</option>
+                                        <option value="0.473176473">US pint</option>
+                                        <option value="0.946352946">US qt</option>
+                                        <option value="3.7854118">US gal</option>
+                                    </select>
+                                    of
+                                    <input name="strong" value=" 75" size="4">
+                                    % alcohol Down to <input name="weak" value=" 40" size="4">
+                                    %
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    By adding
+                                    <input name="use_water" size="4">
+                                    <select name="use_waterm">
+                                        <option value="1">L</option>
+                                        <option value="33.8140227018">US fl oz</option>
+                                        <option value="4.22675283773">US cups</option>
+                                        <option value="2.11337641887">US pints</option>
+                                        <option value="1.05668820943">US qt</option>
+                                        <option value="0.264172052358">US gal</option>
+                                    </select>
+                                    Water
+                                </td>
+                                <td align="right" valign="bottom">
+                                    <input type="button" value="Calculate" onclick="alk2.use_water.value=Math.round(alk2.amount.value*amountm.value *((alk2.strong.value / alk2.weak.value)-1)*alk2.use_waterm.value*1000)/1000">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <br>
+
+            <h3 class="alignCenter">Temperature Converter</h3>
+            <form action="" id="tempConvert" name="tempConvert">
+                <div class="c2">
+                    <table class="c3">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Enter the degree
+                                </td>
+                                <td>
+                                    <input type="text" size="12" name="txt">
+                                </td>
+                                <td>
+                                    <select name="myoption">
+                                        <option value="Fahrenheit">
+                                            F
+                                        </option>
+                                        <option value="Celsius">
+                                            C
+                                        </option>
+                                    </select>
+                                </td>
+                                <td>
+                                    <input type="button" onclick="doTempConvert()" value="Calculate">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Equal Value
+                                </td>
+                                <td>
+                                    <input type="text" readonly="readonly" size="12" name="txt1">
+                                </td>
+                                <td></td>
+                                <td></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <script type="text/javascript">
+
+                function doTempConvert() {
+                    var f = document.getElementById('tempConvert');
+                    var a = f.myoption.value;
+                    if (a == "Fahrenheit") {
+                        var val = f.txt.value;
+                        var tf = parseInt(val);
+                        var tc = (5 / 9) * (tf - 32);
+                        var res = Math.round(tc * Math.pow(10, 2)) / Math.pow(10, 2);
+                        f.txt1.value = res + " C";
+                    }
+                    else {
+                        var val = f.txt.value;
+                        var tc = parseInt(val);
+                        var tf = ((9 / 5) * tc) + 32;
+                        var res1 = Math.round(tf * Math.pow(10, 2)) / Math.pow(10, 2);
+                        f.txt1.value = res1 + " F";
+                    }
+                }
+
+            </script>
+
+            <br>
+
+            <script type="text/javascript">
+                // B8 -> Gallons
+                // C8 -> Watts
+                // D8 -> Start Temp
+                // E8 -> Final Temp
+                // F8 -> Efficiency Percentage
+                // =((B8*8.33*453.59237)*(((5/9)*(E8-32))-((5/9)*(D8-32)))/(C8*0.238845896628*F8))/60
+
+                var calculate = function () {
+                    // easier to just recaulculate these on each change
+                    var volume = document.getElementById('volume');
+                    var energy = document.getElementById('energy');
+                    var startTemp = document.getElementById('startTemp');
+                    var endTemp = document.getElementById('endTemp');
+                    var efficiency = document.getElementById('efficiency');
+
+                    if (isNaN(volume.value) || volume.value < 0) {
+                        volume.value = 0;
+                        alert('Volume must be a >= 0');
+                    }
+
+                    if (isNaN(energy.value) || energy.value < 0) {
+                        energy.value = 0;
+                        alert('Energy must be a >= 0');
+                    }
+
+                    if (isNaN(efficiency.value) || efficiency.value < 0 || efficiency.value > 100) {
+                        efficiency.value = 95;
+                        alert('Efficiency percentage must be between 0 and 100%');
+                    }
+
+                    var volumeUnits = document.getElementById('volumeUnits').options[document.getElementById('volumeUnits').selectedIndex].value;
+                    var energyUnits = document.getElementById('energyUnits').options[document.getElementById('energyUnits').selectedIndex].value;
+                    var startTempUnits = document.getElementById('startTempUnits').options[document.getElementById('startTempUnits').selectedIndex].value;
+                    var endTempUnits = document.getElementById('endTempUnits').options[document.getElementById('endTempUnits').selectedIndex].value;
+
+                    if (startTempUnits == 'F' && startTemp.value < 32) {
+                        startTemp.value = 32;
+                        alert('Start Temp must be above freezing');
+                    }
+
+                    if (startTempUnits == 'F' && startTemp.value > 212) {
+                        startTemp.value = 212;
+                        alert('Start Temp must be below boiling');
+                    }
+
+                    if (startTempUnits == 'C' && startTemp.value > 100) {
+                        startTemp.value = 100;
+                        alert('Start Temp must be below boiling');
+                    }
+
+                    if (endTempUnits == 'F' && endTemp.value < 32) {
+                        endTemp.value = 32;
+                        alert('Start Temp must be above freezing');
+                    }
+
+                    if (endTempUnits == 'F' && endTemp.value > 212) {
+                        endTemp.value = 212;
+                        alert('Start Temp must be below boiling');
+                    }
+
+                    if (endTempUnits == 'C' && endTemp.value > 100) {
+                        endTemp.value = 100;
+                        alert('Start Temp must be below boiling');
+                    }
+
+                    var volumeInGallons = (volumeUnits == 'litres') ? volume.value * 0.264 : volume.value;
+                    var energyInWatts = (energyUnits == 'btu') ? energy.value * 0.293 : energy.value;
+
+                    var startTempInF = (startTempUnits == 'C') ? startTemp.value * 1.8 + 32 : startTemp.value;
+                    var endTempInF = (endTempUnits == 'C') ? endTemp.value * 1.8 + 32 : endTemp.value;
+
+                    if (startTempInF.value > endTempInF.value) {
+                        startTemp.value = 40;
+                        endTemp.value = 100;
+                        alert('Start Temp cannot be greater than End Temp');
+                    }
+
+                    var timeToTemp = document.getElementById('timeToTemp');
+                    timeToTemp.value = Math.round(100 * ((volumeInGallons * 8.33 * 453.59237) * (((5 / 9) * (endTempInF - 32)) - ((5 / 9) * (startTempInF - 32))) / (energyInWatts * 0.238845896628 * efficiency.value)) / 60);
+                }
+            </script>
+
+            <h3 class="alignCenter">Heating Time To Temp</h3>
+            <div class="c2">
+                <form action="#">
+                    <table border="0" style="width:auto;" class="c3">
+                        <caption>(Water boils at: 100°C/212°F)</caption>
+                        <tbody>
+                            <tr>
+                                <td class="name">Volume:</td>
+                                <td>
+                                    <input type="text" id="volume" value="2" size="6" onchange="calculate()">
+                                    <select id="volumeUnits" onchange="calculate()">
+                                        <option value="litres">litres</option>
+                                        <option value="gallons" selected="selected">gallons</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">Energy:</td>
+                                <td>
+                                    <input type="text" id="energy" value="1500" size="6" onchange="calculate()">
+                                    <select id="energyUnits" onchange="calculate()">
+                                        <option value="watts" selected="selected">watts</option>
+                                        <option value="btu">BTU/h</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">Start Temp:</td>
+                                <td>
+                                    <input type="text" id="startTemp" value="65" size="6" onchange="calculate()">
+                                    <select id="startTempUnits" onchange="calculate()">
+                                        <option value="C">°C</option>
+                                        <option value="F" selected="selected">°F</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">End Temp:</td>
+                                <td>
+                                    <input type="text" id="endTemp" value="212" size="6" onchange="calculate()">
+                                    <select id="endTempUnits" onchange="calculate()">
+                                        <option value="C">°C</option>
+                                        <option value="F" selected="selected">°F</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">Efficiency:</td>
+                                <td>
+                                    <input type="text" id="efficiency" value="95" size="6" onchange="calculate()">%
+                                </td>
+                            </tr>
+                            <tr>
+                                <td class="name">Time to Temp:</td>
+                                <td>
+                                    <input type="text" id="timeToTemp" readonly="readonly" size="6"> minutes
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </form>
+                <script type="text/javascript">calculate();</script>
+            </div>
+
+            <br>
+
+            <h3 class="alignCenter">Vapor Speed Calculator</h3>
+            <form action="" id="vs" name="vs">
+                <div class="c2">
+                    <table class="c3">
+                        <tbody>
+                            <tr>
+                                <td>
+                                    Column Diameter (Inches)
+                                </td>
+                                <td>
+                                    <input type="text" value="2" size="12" id="vsD" name="vsD">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Power Input (Watts)
+                                </td>
+                                <td>
+                                    <input type="text" value="1500" size="12" id="vsW" name="vsW">
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>&nbsp;</td>
+                                <td>
+                                    <input type="button" onclick="vs.vsR.value=Math.round((45.77*(vs.vsW.value/1000))/((3.1416*(vs.vsD.value*vs.vsD.value))/4)*Math.pow(10,2))/Math.pow(10,2);" value="Calculate">
+                                    <!--<input type="button" value="Calculate" onclick="vs.vsR.value=Math.round((58.3*(vs.vsW.value/1000))/(vs.vsD.value*vs.vsD.value)*Math.pow(10,2))/Math.pow(10,2);" />-->
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>
+                                    Vapor Speed (Inches)
+                                </td>
+                                <td>
+                                    <input type="text" readonly="readonly" size="12" id="vsR" name="vsR">
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </form>
+
+            <br>
+
+            <script type="text/javascript">
+
+                function roundNumber(num, dec) {
+                    var result = Math.round(num * Math.pow(10, dec)) / Math.pow(10, dec);
+                    return result;
+                }
+
+                function dilutionWaterCalc(a) {
+                    if (a == 0) {
+                        //document.getElementById("Wv").innerHTML='';
+                        //return;
+                    }
+
+                    var f = document.dilutionCalc_form;
+
+                    if (a == 0) {
+                        document.getElementById("Wv").innerHTML = '';
+                        f.Dv.value = 750;
+                        f.Dp.value = 100;
+                        f.Ap.value = 120;
+                        //return;
+                    }
+
+                    var Dv = Number(f.Dv.value);
+                    var Dp = Number(f.Dp.value);
+                    var Ap = Number(f.Ap.value);
+                    var Av = Number((Dv * Dp) / Ap);
+                    var Wv = Number(Dv - Av);
+                    f.Av.value = roundNumber(Av, 0);
+                    f.Wv.value = roundNumber(Wv, 0);
+                }
+
+            </script>
+
+
+
+
+            <blockquote>This calculator is helpful in accurately determining how much water is required to dilute a given volume of alcoholic spirits at a known strength down to a desired strength. Any standard values can be used for the calculations just as long as they are consistent. For example, quarts, liters, ounces, or milliliters, as well as %ABV or proof can be used. The calculators default values are in milliliters and proof. Also note that the calculator labeling was worded so as to be a reminder that alcohol should be added to water, not water added to alcohol, to help reduce the possibility of clouding the resulting mixture.</blockquote>
+            <br><br>
+            <h3 class="alignCenter">Dilution Water Calculator</h3>
+
+            <form method="post" action="" id="dilutionCalc_form" name="dilutionCalc_form">
+                <div class="c2">
+
+                    <table class="c3">
+
+                        <tbody>
+                            <tr>
+                                <th><label for="Dv">Desired Volume:</label></th>
+                                <td><input type="text" size="6" value="750" id="Dv" name="Dv"></td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="Dp">Desired Strength:</label></th>
+                                <td><input type="text" size="6" value="100" id="Dp" name="Dp"></td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="Ap">Alcohol Strength:</label></th>
+                                <td><input type="text" size="6" value="120" id="Ap" name="Ap"></td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="Av">Add Alcohol Volume:</label></th>
+                                <td><input type="text" readonly="readonly" size="6" id="Av" name="Av"></td>
+                            </tr>
+
+                            <tr>
+                                <th><label for="Wv">Into Water Volume:</label></th>
+                                <td><input type="text" readonly="readonly" size="6" id="Wv" name="Wv"></td>
+                            </tr>
+
+                            <tr>
+                                <td colspan="2">
+                                    <input type="button" onclick="return dilutionWaterCalc(1);" value="Calculate" id="dC_submit" name="dC_submit">
+                                    <input type="button" onclick="return dilutionWaterCalc(0);" value="Reset" id="dC_reset" name="dC_reset">
+                                </td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+
+            </form>
+
+            <script type="text/javascript">
+                dilutionWaterCalc();
+            </script>
+
+            <br>
+        </div>
+
+
+    </div> <!-- #left-area -->
+</div>

@@ -1,0 +1,73 @@
+﻿@model Lab_5___Hootch.Data.Batch
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h1>Create</h1>
+
+<h4>Batch</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DateStarted" class="control-label"></label>
+                <input asp-for="DateStarted" class="form-control" />
+                <span asp-validation-for="DateStarted" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedFinishDate" class="control-label"></label>
+                <input asp-for="ExpectedFinishDate" class="form-control" />
+                <span asp-validation-for="ExpectedFinishDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="AmountOfWash" class="control-label"></label>
+                <input asp-for="AmountOfWash" class="form-control" />
+                <span asp-validation-for="AmountOfWash" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedWashPercent" class="control-label"></label>
+                <input asp-for="ExpectedWashPercent" class="form-control" />
+                <span asp-validation-for="ExpectedWashPercent" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ExpectedYield" class="control-label"></label>
+                <input asp-for="ExpectedYield" class="form-control" />
+                <span asp-validation-for="ExpectedYield" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="ActualYield" class="control-label"></label>
+                <input asp-for="ActualYield" class="form-control" />
+                <span asp-validation-for="ActualYield" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="PercentDiff" class="control-label"></label>
+                <input asp-for="PercentDiff" class="form-control" />
+                <span asp-validation-for="PercentDiff" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Notes" class="control-label"></label>
+                <input asp-for="Notes" class="form-control" />
+                <span asp-validation-for="Notes" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
